@@ -18,6 +18,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/items")
+@CrossOrigin(origins = "http://localhost:8081")
 public class ItemController {
     @Autowired
     private ItemService itemService;
