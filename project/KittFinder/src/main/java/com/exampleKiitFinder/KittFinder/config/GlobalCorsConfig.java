@@ -10,9 +10,27 @@ public class GlobalCorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:8081") // your frontend origin
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*")
-                .allowCredentials(true);
+                .allowedOriginPatterns(
+                        "http://localhost:3000",
+                        "http://localhost:3001",
+                        "http://localhost:8081",
+                        "http://127.0.0.1:3000"
+                )
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
+                .allowedHeaders(
+                        "Authorization",
+                        "Content-Type",
+                        "Accept",
+                        "Origin",
+                        "Access-Control-Request-Method",
+                        "Access-Control-Request-Headers"
+                )
+                .exposedHeaders(
+                        "Access-Control-Allow-Origin",
+                        "Access-Control-Allow-Credentials",
+                        "Authorization"
+                )
+                .allowCredentials(true)
+                .maxAge(3600);
     }
 }
